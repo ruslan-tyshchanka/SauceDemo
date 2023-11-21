@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
 
-    @Test
+    @Test(description = "Check that cart can be opened")
     public void openCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -18,7 +18,7 @@ public class CartTest extends BaseTest {
         cartPage.open();
     }
 
-    @Test
+    @Test(description = "Add and remove product item in Cart")
     public void getElementInCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

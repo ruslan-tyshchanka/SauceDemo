@@ -8,7 +8,7 @@ import static org.testng.Assert.assertEquals;
 
 public class ProductsTest extends  BaseTest {
 
-    @Test
+    @Test(description = "Verify presence of specific product and its attributes in cart")
     public void verifyProductAttributesInCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
