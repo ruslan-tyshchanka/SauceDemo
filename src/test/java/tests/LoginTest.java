@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "loginData", description = "Try to login without name")
+    @Test(dataProvider = "loginData", description = "Try to login without credentials")
     public void loginWithoutName(String user, String password, String expectedError) {
         loginPage.open();
         loginPage.login(user, password);

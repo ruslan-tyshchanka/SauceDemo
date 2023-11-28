@@ -28,9 +28,9 @@ public class CartTest extends BaseTest {
                 "User is not logged in or wrong page"
         );
 
-        String productName = "Sauce Labs Fleece Jacket";
+        String productName = "Sauce Labs Backpack";
 
-        productsPage.addItemToCart("Sauce Labs Fleece Jacket");
+        productsPage.addItemToCart(productName);
 
         cartPage.open();
         Assert.assertEquals(

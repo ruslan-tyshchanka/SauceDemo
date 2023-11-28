@@ -8,8 +8,8 @@ import static org.testng.Assert.assertEquals;
 
 public class ProductsTest extends  BaseTest {
 
-    @Test(description = "Verify presence of specific product and its attributes in cart")
-    public void verifyProductAttributesInCart() {
+    @Test(description = "Verify that item can be added in cart")
+    public void addItemToCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         Assert.assertEquals(
@@ -20,18 +20,43 @@ public class ProductsTest extends  BaseTest {
 
         String productName = "Sauce Labs Fleece Jacket";
 
-        productsPage.addItemToCart("Sauce Labs Fleece Jacket");
+        productsPage.addItemToCart(productName);
 
-        productsPage.openCart();
+        Assert.assertEquals(
+                productsPage.verifyRemoveFromCartButton(productName),
+                1,
+                "Remove button is not displayed, item might not be in cart"
+        );
+
+
+    }
+
+    @Test(description = "Verify that item can be removed from cart")
+    public void removeItemFromCart() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
         Assert.assertEquals(
                 productsPage.getTitle(),
-                "Your Cart",
-                "Cart is not opened"
+                "Products",
+                "User is not logged in or wrong page"
         );
-        //driver.get("https://www.saucedemo.com/cart.html");
-        //Assert.assertEquals(driver.findElement(By.xpath("//*[@class='cart_item']//*[@class='inventory_item_name']")).getText(), productName, "Product Name in cart is incorrect");
 
+        String productName = "Sauce Labs Fleece Jacket";
 
+        productsPage.addItemToCart(productName);
 
+        Assert.assertEquals(
+                productsPage.verifyRemoveFromCartButton(productName),
+                1,
+                "Remove button is not displayed, item might not be in cart"
+        );
+
+        productsPage.removeItemFromCart(productName);
+
+        Assert.assertEquals(
+                productsPage.verifyAddToCartButton(productName),
+                1,
+                "Remove button is still displayed, item might still be in cart"
+        );
     }
 }
